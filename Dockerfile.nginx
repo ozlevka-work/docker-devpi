@@ -1,8 +1,8 @@
-from nginx:1.19.3
-copy /nginx/etc/ /etc/nginx/
-copy /nginx/bin/ /usr/bin/
-cmd /usr/bin/nginx-start
-env DEBUG=0 \
+FROM nginx:1.19.3
+COPY /nginx/etc/ /etc/nginx/
+COPY /nginx/bin/ /usr/bin/
+CMD /usr/bin/nginx-start
+ENV DEBUG=0 \
     WEB_AUTH=0 \
     WEB_DEVPI_LOCKDOWN=0 \
     WEB_SERVER_NAME=localhost \

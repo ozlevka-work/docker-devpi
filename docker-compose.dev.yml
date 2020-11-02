@@ -30,6 +30,8 @@ services:
     environment:
     - POSTGRES_USER=devpi_test
     - POSTGRES_PASSWORD=pgpass
+    ports:
+    - 5432:5432
 
 volumes:
   data:
