@@ -1,23 +1,7 @@
-FROM python:3.9 as builder
-COPY requirements*.txt  /requirements/
-RUN pip wheel \
-    --wheel-dir /wheel \
-    --no-cache-dir \
-    -r /requirements/requirements.txt \
-    -r /requirements/requirements-plugins.txt
+FROM python:3.6.8
 
-FROM python:3.9
-COPY requirements*.txt  /requirements/
-COPY --from=builder /wheel /wheel
-RUN python3 -m pip install \
-    --no-cache-dir \
-    --upgrade \
-    --find-links /wheel \
-    --no-index \
-    devpi-server \
-    devpi-web \
-    devpi-client \
-    && rm -rf /root/.cache
+COPY requirement.txt /root/
+RUN pip --disable-pip-version-check --no-cache-dir install -r /root/requirement.txt     
 ADD /devpi/bin/* /usr/bin/
 CMD ["/usr/bin/devpi-start"]
 EXPOSE 3141
