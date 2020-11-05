@@ -24,7 +24,7 @@ fi
 if [[ ! -f ${DEVPISERVER_SERVERDIR}/.nodeinfo ]]; then
   DEVPISERVER_ROOT_PASSWD=${DEVPISERVER_ROOT_PASSWD-$(genpasswd)}
   export DEVPISERVER_ROOT
-  devpi-init \
+  devpi-server --init \
     --serverdir "${DEVPISERVER_SERVERDIR}" \
     --root-passwd "${DEVPISERVER_ROOT_PASSWD}"
   echo "new devpi server created with root password ${DEVPISERVER_ROOT_PASSWD}"
